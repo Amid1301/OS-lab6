@@ -1,0 +1,22 @@
+name: Script Runner
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Make script executable
+        run: chmod +x scripts/build.sh
+
+      - name: Run build script
+        run: ./scripts/build.sh
+
+      - name: Show build_info.txt
+        run: cat build_info.txt
